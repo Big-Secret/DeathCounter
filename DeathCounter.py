@@ -5,7 +5,7 @@ import keyboard
 import webbrowser
 
 
-versionNo = "v0.3"
+versionNo = "v0.4"
 
 
 
@@ -23,20 +23,26 @@ class Deaths():
         self.limit = DeathLimit #default death count
     # function to add a death
     def addDeath(self):
+        file = open("DeathCounter.txt","w+")
         self.deaths += 1
         deathsCountLabel.config(text=str(self.deaths))
+        file.write(str(self.deaths))
         print("Death count is now:",self.deaths)
     # function to remove a death
     def removeDeath(self):
         if self.deaths > 0:
+            file = open("DeathCounter.txt", "w+")
             self.deaths -= 1
             deathsCountLabel.config(text=str(self.deaths))
+            file.write(str(self.deaths))
             print("New death count:", self.deaths)
         else:
             print("Already at 0")
     def resetDeaths(self):
+        file = open("DeathCounter.txt", "w+")
         self.deaths = 0
         deathsCountLabel.config(text=str(self.deaths))
+        file.write(str(self.deaths))
         print("Deaths set to:",self.deaths)
 
 gameRules = Deaths(0,10)
